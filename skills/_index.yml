@@ -1,0 +1,23 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ascend-io/ascend-tools (crates/ascend-tools-cli/src/skill-*.md, installed by `ascend-tools skill install`)
+note: >-
+  Provider-published Agent Skills, saved verbatim. Ascend ships these SKILL.md templates in
+  the ascend-tools CLI; `ascend-tools skill install --target .claude/skills --all` deploys them
+  for AI coding assistants (Claude Code, Cursor, Codex).
+skills:
+  - file: ascendio-tools-cli.md
+    name: ascend-tools-cli
+    description: Use the ascend-tools CLI to manage Ascend workspaces, deployments, flows, and flow runs.
+  - file: ascendio-tools-python.md
+    name: ascend-tools-python
+    description: Use the ascend-tools Python SDK to manage Ascend workspaces, deployments, flows, and flow runs.
+  - file: ascendio-tools-javascript.md
+    name: ascend-tools-javascript
+    description: Use the ascend-tools JavaScript SDK to manage Ascend workspaces, deployments, flows, and flow runs.
+  - file: ascendio-tools-rust.md
+    name: ascend-tools-rust
+    description: Use the ascend-tools Rust SDK to manage Ascend workspaces, deployments, flows, and flow runs.
+  - file: ascendio-tools-mcp.md
+    name: ascend-tools-mcp
+    description: Use the ascend-tools MCP server to manage Ascend workspaces, deployments, flows, and flow runs.

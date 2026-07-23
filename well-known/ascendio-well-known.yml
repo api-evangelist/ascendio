@@ -1,0 +1,13 @@
+generated: '2026-07-18'
+method: searched
+source: live probes of ascend.io well-known discovery surface
+note: >-
+  No /.well-known/ discovery documents were served (all 404). Recorded for auditability;
+  no WellKnown/SecurityTxt pointer emitted since nothing was found.
+hosts:
+  - host: https://www.ascend.io
+    documents:
+      - {path: /.well-known/security.txt, status: 404}
+  - host: https://docs.ascend.io
+    documents:
+      - {path: /.well-known/security.txt, status: 404}

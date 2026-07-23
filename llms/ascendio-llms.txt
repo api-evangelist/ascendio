@@ -1,0 +1,36 @@
+# Ascend.io
+
+> Ascend.io is a data engineering platform for building declarative, DataAware data pipelines that unify ingest, transform, and orchestration, with an agentic AI assistant (Otto). Its developer surface is the Ascend Instance web API (/api/v1, service-account Bearer auth) exposed through the ascend-tools CLI, Python/JavaScript/Rust SDKs, and an official 25-tool MCP server. Note: Ascend announced in 2026 it is winding down operations; the open-source tooling and docs remain published at capture time.
+
+## APIs
+- [Ascend Instance web API](https://docs.ascend.io/reference/api/ascend-api): REST API (/api/v1) for workspaces, deployments, environments, projects, profiles, flows, flow runs, and Otto.
+
+## SDKs & CLI
+- [ascend-tools (Python)](https://pypi.org/project/ascend-tools/): `uv add ascend-tools`
+- [ascend-tools (JavaScript)](https://www.npmjs.com/package/ascend-tools): `npm install -g ascend-tools`
+- [ascend-tools-core (Rust)](https://crates.io/crates/ascend-tools-core): `cargo add ascend-tools-core`
+- [ascend-tools-cli (Rust CLI)](https://crates.io/crates/ascend-tools-cli): `cargo install ascend-tools-cli`
+- [ascend-io-sdk (legacy Python)](https://pypi.org/project/ascend-io-sdk/): `pip install ascend-io-sdk`
+
+## MCP
+- [ascend-tools MCP server](https://docs.ascend.io/reference/mcp): 25 tools over stdio/HTTP — `uvx ascend-tools mcp` or `npx ascend-tools mcp`.
+
+## Docs
+- [Documentation](https://docs.ascend.io)
+- [Quickstart](https://docs.ascend.io/getting-started/quickstart)
+- [CLI reference](https://docs.ascend.io/reference/cli)
+- [Concepts (Otto, workspaces, deployments, flows, components)](https://docs.ascend.io)
+
+## Source
+- [ascend-io/ascend-tools (GitHub)](https://github.com/ascend-io/ascend-tools): CLI + SDKs + MCP server (Rust core).
+- [Ascend.io on GitHub](https://github.com/ascend-io)
+
+## Enrichment artifacts
+- Authentication: authentication/ascendio-authentication.yml
+- Conventions: conventions/ascendio-conventions.yml
+- Error codes: errors/ascendio-error-codes.yml
+- Data model: data-model/ascendio-data-model.yml
+- Packages/SDKs: packages/ascendio-packages.yml
+- CLI: cli/ascendio-cli.yml
+- MCP: mcp/ascendio-mcp.yml
+- Agent Skills: skills/_index.yml

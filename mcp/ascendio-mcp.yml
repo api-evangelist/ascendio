@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.ascend.io/reference/mcp + https://github.com/ascend-io/ascend-tools (crates/ascend-tools-mcp)
+server:
+  name: ascend-tools
+  description: >-
+    Official MCP server for the Ascend Instance web API. Exposes 25 tools for managing
+    workspaces, deployments, environments, projects, profiles, flows, flow runs, and Otto
+    (Ascend's agentic AI assistant). Works with Claude Code, Claude Desktop, Codex CLI,
+    Cursor, and other MCP-compatible clients.
+  transport: [stdio, http]
+  http_endpoint: /mcp
+  run:
+    stdio_uv: uvx ascend-tools mcp
+    stdio_npm: npx ascend-tools mcp
+    http: ascend-tools mcp --http --bind 127.0.0.1:8000
+  install_claude_code: claude mcp add --transport stdio ascend-tools-dev -- uvx ascend-tools mcp
+  install_codex: codex mcp add ascend-tools-dev -- uvx ascend-tools mcp
+  auth:
+    method: service-account
+    env: [ASCEND_SERVICE_ACCOUNT_ID, ASCEND_SERVICE_ACCOUNT_KEY, ASCEND_INSTANCE_API_URL]
+    note: Inherits authentication from shell or ~/.ascend-tools/config.toml
+tools:
+  - {name: list_workspaces, description: List workspaces with optional environment/project filters}
+  - {name: get_workspace, description: Get a workspace by title}
+  - {name: create_workspace, description: Create a new workspace}
+  - {name: update_workspace, description: Update an existing workspace (only provided fields change)}
+  - {name: pause_workspace, description: Pause a running workspace}
+  - {name: resume_workspace, description: Resume a paused workspace}
+  - {name: delete_workspace, description: Delete a workspace}
+  - {name: list_deployments, description: List deployments with optional filters}
+  - {name: get_deployment, description: Get a deployment by title}
+  - {name: create_deployment, description: Create a new deployment}
+  - {name: update_deployment, description: Update an existing deployment}
+  - {name: pause_deployment_automations, description: Pause automations on a deployment}
+  - {name: resume_deployment_automations, description: Resume automations on a deployment}
+  - {name: delete_deployment, description: Delete a deployment}
+  - {name: list_environments, description: List environments}
+  - {name: get_environment, description: Get an environment by title}
+  - {name: list_projects, description: List projects}
+  - {name: get_project, description: Get a project by title}
+  - {name: list_profiles, description: List profiles for a workspace/deployment/project+branch}
+  - {name: list_flows, description: List flows in a workspace or deployment}
+  - {name: run_flow, description: Trigger a flow run (supports resume + flow run spec)}
+  - {name: list_flow_runs, description: List flow runs with status/flow/time filters + pagination}
+  - {name: get_flow_run, description: Get a flow run by name}
+  - {name: list_otto_providers, description: List available Otto providers and enabled models}
+  - {name: otto, description: Chat with Otto, the Ascend AI assistant}

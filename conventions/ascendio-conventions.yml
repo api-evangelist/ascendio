@@ -1,0 +1,43 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.ascend.io/reference + https://github.com/ascend-io/ascend-tools (docs/, ARCHITECTURE.md)
+api: Ascend Instance web API (/api/v1)
+authentication:
+  style: service-account Bearer token
+  ref: authentication/ascendio-authentication.yml
+base_url:
+  pattern: https://api.<instance>.ascend.io
+  version_prefix: /api/v1
+  note: Per-instance host; supplied via ASCEND_INSTANCE_API_URL.
+pagination:
+  style: offset-limit
+  params: [offset, limit]
+  time_filters: [since, until]   # ISO 8601, on flow-run listings
+  response_fields: [items, truncated]
+  note: 'List endpoints (e.g. flow runs) return {"items": [...], "truncated": bool}.'
+identifier_resolution:
+  friendly_names: true
+  note: >-
+    Resources are addressed by human-readable title (workspace/deployment/environment/project);
+    a UUID override is accepted via --uuid on every command.
+output:
+  formats: [table, json]
+  selector: "-o text|json (CLI); MCP/SDK return dict/list[dict]/objects"
+error_envelope:
+  style: typed-errors
+  ref: errors/ascendio-error-codes.yml
+  note: >-
+    Core exposes a typed Error enum (RuntimePaused, NotFound{kind,title}, auth/HTTP/parse
+    errors). Responses read as text first then JSON-parsed for robustness against non-JSON
+    (e.g. proxy HTML) error bodies.
+streaming:
+  otto: Server-Sent Events (SSE) line stream for Otto assistant responses.
+idempotency:
+  supported: false
+  note: No documented idempotency-key header/param on the Ascend web API.
+rate_limiting:
+  documented: false
+versioning:
+  scheme: uri-path
+  current: v1
+  ref: lifecycle/ascendio-lifecycle.yml

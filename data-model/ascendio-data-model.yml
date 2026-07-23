@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  https://github.com/ascend-io/ascend-tools (crates/ascend-tools-core/src/models.rs) +
+  https://docs.ascend.io/reference (Ascend Instance web API resources)
+note: >-
+  Entity-relationship graph derived from the documented Ascend Instance web API resources and
+  the SDK model types. Workspaces and Deployments are both "Runtime" targets (a runtime is
+  addressed as one or the other). No public OpenAPI is published, so relationships are inferred
+  from the documented resource hierarchy and SDK method signatures, not $ref links.
+entities:
+  - name: Environment
+    description: A named environment (e.g. Production, Staging) that groups runtimes.
+  - name: Project
+    description: A code project (git-backed) deployed into environments as workspaces/deployments.
+  - name: Runtime
+    description: Abstract compute target; concretely a Workspace or a Deployment.
+  - name: Workspace
+    is_a: Runtime
+    description: Interactive/dev runtime bound to an environment + project + git branch.
+  - name: Deployment
+    is_a: Runtime
+    description: Production runtime with automations (scheduled/triggered flow execution).
+  - name: Profile
+    description: A named configuration profile applied to a runtime.
+  - name: Flow
+    description: A declarative data pipeline that runs inside a runtime.
+  - name: FlowRun
+    description: A single execution of a flow (with status, timing, spec).
+  - name: FlowRunTrigger
+    description: The trigger/event that submits a flow run (carries event_uuid).
+  - name: OttoProvider
+    description: An LLM provider available to Otto, the Ascend AI assistant.
+  - name: OttoModel
+    description: A model exposed by an Otto provider.
+  - name: Conversation
+    description: An Otto chat thread (thread_id), optionally bound to a runtime context.
+relationships:
+  - {from: Workspace, type: belongs_to, to: Environment, via: environment}
+  - {from: Workspace, type: belongs_to, to: Project, via: project}
+  - {from: Deployment, type: belongs_to, to: Environment, via: environment}
+  - {from: Deployment, type: belongs_to, to: Project, via: project}
+  - {from: Runtime, type: has_many, to: Profile, via: profile}
+  - {from: Runtime, type: has_many, to: Flow, via: workspace/deployment}
+  - {from: Flow, type: has_many, to: FlowRun, via: flow}
+  - {from: FlowRun, type: belongs_to, to: Runtime, via: runtime_uuid}
+  - {from: FlowRunTrigger, type: has_one, to: FlowRun, via: event_uuid}
+  - {from: OttoProvider, type: has_many, to: OttoModel, via: provider}
+  - {from: Conversation, type: belongs_to, to: Runtime, via: runtime_uuid}

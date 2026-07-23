@@ -1,0 +1,57 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ascend-io/ascend-tools + registries (PyPI/npm/crates.io)
+notes: >-
+  All ascend-tools packages ship from the single Rust workspace ascend-io/ascend-tools
+  (one Rust core, thin binding crates). The installed CLI binary is always `ascend-tools`
+  regardless of install method. ascend-io-sdk is the older/legacy first-party Python SDK.
+packages:
+  - language: python
+    registry: pypi
+    name: ascend-tools
+    url: https://pypi.org/project/ascend-tools/
+    install: uv add ascend-tools
+    ships: Python SDK (Client) + CLI entry point (PyO3 wheel via maturin)
+    official: true
+  - language: javascript
+    registry: npm
+    name: ascend-tools
+    url: https://www.npmjs.com/package/ascend-tools
+    install: npm install -g ascend-tools
+    ships: JavaScript/TypeScript SDK (Client) + CLI (napi-rs native addon)
+    official: true
+  - language: rust
+    registry: crates.io
+    name: ascend-tools-core
+    url: https://crates.io/crates/ascend-tools-core
+    install: cargo add ascend-tools-core
+    ships: Rust SDK library (AscendClient)
+    official: true
+  - language: rust
+    registry: crates.io
+    name: ascend-tools-cli
+    url: https://crates.io/crates/ascend-tools-cli
+    install: cargo install ascend-tools-cli
+    ships: Rust CLI binary (ascend-tools)
+    official: true
+  - language: rust
+    registry: crates.io
+    name: ascend-tools-mcp
+    url: https://crates.io/crates/ascend-tools-mcp
+    install: cargo add ascend-tools-mcp
+    ships: MCP server library (25 tools)
+    official: true
+  - language: rust
+    registry: crates.io
+    name: ascend-tools-tui
+    url: https://crates.io/crates/ascend-tools-tui
+    install: cargo add ascend-tools-tui
+    ships: Interactive Otto TUI library
+    official: true
+  - language: python
+    registry: pypi
+    name: ascend-io-sdk
+    url: https://pypi.org/project/ascend-io-sdk/
+    install: pip install ascend-io-sdk
+    ships: Legacy Ascend.io Python SDK
+    official: true

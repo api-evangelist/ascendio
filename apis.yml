@@ -1,7 +1,27 @@
 aid: ascendio
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ascendio.png
 name: Ascend.io
-description: 'Ascend.io is a company surfaced as a portfolio company of accel and added to the API Evangelist
-  network as a stub for enrichment. Sector: big-data. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Ascend.io is a data engineering platform for building declarative, DataAware data pipelines
+  that unify ingestion, transformation, and orchestration across warehouses like BigQuery,
+  Snowflake, Databricks, and MotherDuck. Pipelines are authored in SQL, Python, and YAML and
+  operated through Otto, Ascend's agentic AI assistant. Its developer surface is the Ascend
+  Instance web API (/api/v1, service-account Bearer auth) exposed through the ascend-tools CLI,
+  first-party Python/JavaScript/Rust SDKs, and an official 25-tool MCP server. Ascend announced
+  in 2026 that it is winding down operations; the open-source tooling and documentation remain
+  published at capture time. Added to the API Evangelist network as an Accel portfolio company.
 url: https://raw.githubusercontent.com/api-evangelist/ascendio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,11 +31,33 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Big Data
-apis: []
+- Data Engineering
+- Data Pipelines
+- ETL
+- Orchestration
+- Data Automation
+- MCP
+- Developer Tools
+apis:
+- name: Ascend Instance API
+  description: >-
+    REST API (/api/v1) for managing Ascend workspaces, deployments, environments, projects,
+    profiles, flows, flow runs, and Otto. Service-account Bearer authentication.
+  humanURL: https://docs.ascend.io/reference/api/ascend-api
+  baseURL: https://api.instance.ascend.io/api/v1
+  properties:
+  - type: Authentication
+    url: authentication/ascendio-authentication.yml
+  - type: Conventions
+    url: conventions/ascendio-conventions.yml
+  - type: ErrorCatalog
+    url: errors/ascendio-error-codes.yml
+  - type: DataModel
+    url: data-model/ascendio-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,4 +65,49 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://www.ascend.io
+  url: https://www.ascend.io
+- type: DeveloperPortal
+  url: https://developer.ascend.io
+- type: Documentation
+  url: https://docs.ascend.io
+- type: APIReference
+  url: https://docs.ascend.io/reference/api/ascend-api
+- type: Quickstart
+  url: https://docs.ascend.io/getting-started/quickstart
+- type: GitHubOrganization
+  url: https://github.com/ascend-io
+- type: SignUp
+  url: https://app.ascend.io/signup
+- type: Support
+  url: https://docs.ascend.io/support
+- type: Packages
+  url: packages/ascendio-packages.yml
+- type: SDKs
+  url: packages/ascendio-packages.yml
+- type: CLI
+  url: cli/ascendio-cli.yml
+- type: MCPServer
+  url: mcp/ascendio-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/ascendio-authentication.yml
+- type: Conventions
+  url: conventions/ascendio-conventions.yml
+- type: ErrorCatalog
+  url: errors/ascendio-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/ascendio-lifecycle.yml
+- type: DataModel
+  url: data-model/ascendio-data-model.yml
+- type: Conformance
+  url: conformance/ascendio-conformance.yml
+- type: DomainSecurity
+  url: security/ascendio-domain-security.yml
+- type: LLMsTxt
+  url: llms/ascendio-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

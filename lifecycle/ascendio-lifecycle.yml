@@ -1,0 +1,26 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ascend-io/ascend-tools (VERSIONING.md) + https://www.ascend.io + https://docs.ascend.io
+versioning:
+  api:
+    scheme: uri-path
+    current: v1
+    prefix: /api/v1
+  tooling:
+    scheme: semver
+    policy: Conventional Commits; bin/bump-version (--patch/--minor/--major); tagged releases validated against GitHub/PyPI/npm.
+    docs: https://github.com/ascend-io/ascend-tools/blob/main/VERSIONING.md
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla:
+  url: null
+status_page: null
+end_of_life:
+  status: winding-down
+  note: >-
+    As of 2026 Ascend announced it is winding down operations after ten years. The ascend-tools
+    CLI/SDK/MCP toolchain and the developer documentation remain published on GitHub, PyPI, npm,
+    and crates.io at capture time; the hosted Ascend Instance web API is per-customer.
+  source: https://www.ascend.io
+deprecated_operations: []

@@ -1,0 +1,52 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.ascend.io/reference/cli + https://github.com/ascend-io/ascend-tools (AGENTS.md CLI reference)
+cli:
+  name: ascend-tools
+  binary: ascend-tools
+  description: >-
+    First-party command-line tool to manage Ascend workspaces, deployments, environments,
+    projects, profiles, flows, and flow runs, plus an interactive Otto TUI. Same Rust core
+    as the SDKs; installed binary is always `ascend-tools` regardless of install method.
+  install:
+    - uv tool install ascend-tools        # Python
+    - npm install -g ascend-tools         # Node.js
+    - cargo install ascend-tools-cli      # Rust
+    - uvx ascend-tools --help             # run without installing (uv)
+    - npx ascend-tools --help             # run without installing (npm)
+  global_flags:
+    - "-o text|json (output format; default table)"
+    - "--instance <NAME> (select named instance from ~/.ascend-tools/config.toml)"
+    - "-V (version)"
+  auth:
+    method: service-account
+    resolution_order: [cli-flags, instance-config-toml, env-vars]
+    env: [ASCEND_SERVICE_ACCOUNT_ID, ASCEND_SERVICE_ACCOUNT_KEY, ASCEND_INSTANCE_API_URL]
+    config_file: ~/.ascend-tools/config.toml
+  command_groups:
+    - group: instance
+      commands: [add, list, remove, set-default]
+    - group: workspace
+      commands: [list, get, create, update, pause, resume, delete]
+    - group: deployment
+      commands: [list, get, create, update, pause-automations, resume-automations, delete]
+    - group: environment
+      commands: [list, get]
+    - group: project
+      commands: [list, get]
+    - group: profile
+      commands: [list]
+    - group: flow
+      commands: [list, run, list-runs, get-run]
+    - group: otto
+      commands: [run, provider list, model list, tui, conversation list, conversation get]
+    - group: signup
+      commands: ["signup (opens https://app.ascend.io/signup)"]
+    - group: skill
+      commands: ["install --target <PATH> [--cli --python --javascript --rust --mcp --all]"]
+    - group: mcp
+      commands: ["mcp [--http] [--bind <ADDR>]"]
+  key_flows:
+    - Trigger a flow run with a spec (full_refresh, components, parameters, run_tests, ...)
+    - Interactive Otto chat via `ascend-tools otto tui` (vi/emacs keybindings, streaming)
+    - Install reference Agent Skills into a repo via `ascend-tools skill install`

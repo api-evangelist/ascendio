@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/ascend-io/ascend-tools (crates/ascend-tools-core/src/error.rs, docs/rust.md)
+format: typed-enum
+envelope: >-
+  ascend-tools-core exposes a typed `ascend_tools::Error` enum (via thiserror). HTTP responses
+  are read as text then JSON-parsed; on non-2xx the error detail is extracted from the response
+  body and mapped to a typed variant. CLI/MCP surface these as human-readable messages (anyhow).
+errors:
+  - code: RuntimePaused
+    meaning: The target workspace/deployment is paused.
+    action: Retry with resume=true to resume the runtime before submitting the flow run.
+  - code: NotFound
+    fields: [kind, title]
+    meaning: A named resource (workspace, deployment, environment, project, flow, flow run) was not found or was ambiguous.
+    action: Verify the title (or pass --uuid); ensure exactly one match.
+  - code: AuthError
+    meaning: Authentication/token-exchange failure (bad service account id/key or instance URL).
+    action: Check ASCEND_SERVICE_ACCOUNT_ID / ASCEND_SERVICE_ACCOUNT_KEY / ASCEND_INSTANCE_API_URL.
+  - code: HttpError
+    meaning: Non-success HTTP status returned by the Ascend web API; detail extracted from body.
+    action: Inspect the message; verify request parameters and instance availability.
+  - code: ParseError
+    meaning: Response body could not be parsed as the expected shape.
+    action: Usually indicates a proxy/gateway error page or an API version mismatch.

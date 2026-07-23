@@ -1,0 +1,30 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  https://docs.ascend.io/reference/api/ascend-api + https://github.com/ascend-io/ascend-tools
+  (ARCHITECTURE.md, auth.rs)
+standards:
+  - id: http-bearer-auth
+    conforms: true
+    evidence: All /api/v1 endpoints require Authorization Bearer token (except /api/v1/auth/*).
+  - id: jwt-assertion-token-exchange
+    conforms: true
+    evidence: Ed25519-signed JWT assertion exchanged for a short-lived Bearer token via Cloud API.
+  - id: mcp
+    conforms: true
+    evidence: Official ascend-tools MCP server (25 tools, stdio + Streamable HTTP) — rmcp implementation.
+  - id: offset-limit-pagination
+    conforms: true
+    evidence: Flow-run listings accept offset/limit + since/until and return {items, truncated}.
+  - id: sse-streaming
+    conforms: true
+    evidence: Otto assistant responses stream over Server-Sent Events (crates/ascend-tools-core/src/sse.rs).
+  - id: openapi
+    conforms: false
+    evidence: No public OpenAPI/Swagger specification found; SDK clients are hand-written typed.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors are a typed enum surfaced by the SDK, not application/problem+json.
+  - id: oauth2
+    conforms: false
+    evidence: Uses service-account JWT token exchange, not a standard OAuth2 authorization flow.
